@@ -1,5 +1,5 @@
 <?php
-  function randPwd ($lenght) {
+  function randPwd($lenght) {
     // set possible characters
     $characters = [
       'abcdefghijklmnopqrstuvwxyz',
@@ -34,6 +34,12 @@
 
     return $pwd;
   }
+  $showResult = false;
+
+  if (isset($_GET) && !empty($_GET['pwdLength'])) {
+    $result = randPwd($_GET['pwdLength']);
+    $showResult = true;
+  }
 ?>
 
 <!DOCTYPE html>
@@ -65,13 +71,25 @@
           </div>
         </div>
       </form>
-      <div class="ms-result d-flex align-items-center justify-content-center gap-5 text-success m-3 p-3">
-        <span style="font-size: 3rem"><i class="fa-solid fa-fingerprint"></i></span>
-        <span>risultato</span>
-        <span style="font-size: 3rem"><i class="fa-solid fa-fingerprint"></i></span>
-      </div>
+      <?php if ($showResult) : ?>
+        <div class="ms-result d-flex align-items-center justify-content-center gap-5 text-success m-3 p-3">
+          <span style="font-size: 3rem"><i class="fa-solid fa-fingerprint"></i></span>
+          <span><?php echo $result ?></span>
+          <span style="font-size: 3rem"><i class="fa-solid fa-fingerprint"></i></span>
+        </div>
+      <?php endif ?>
     </div>
   </main>
-  <footer></footer>
+  <footer class="fixed-bottom">
+    <div class="container-fluid bg-dark text-center text-white py-3">
+      <span>Made with </span>
+      <a href="https://www.w3schools.com/html/default.asp" class="text-decoration-none"><i class="fa-brands fa-html5"></i></a>
+      <a href="https://getbootstrap.com/" class="text-decoration-none"><i class="fa-brands fa-bootstrap"></i> </a>
+      <a href="https://www.w3schools.com/js/" class="text-decoration-none"><i class="fa-brands fa-js"></i> </a>
+      <a href="https://www.php.net/" class="text-decoration-none"><i class="fa-brands fa-php"></i> </a>
+      <span>by </span>
+      <a href="https://github.com/mcspe" class="text-decoration-none">@mcspe</a>
+    </div>
+  </footer>
 </body>
 </html>

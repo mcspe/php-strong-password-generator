@@ -1,16 +1,7 @@
 <?php
-
-  require_once __DIR__ . '/randpwd.php';
-
-
-  if (isset($_GET['pwdLength']) && !empty($_GET['pwdLength'])) {
-    session_start();
-    $_SESSION['result'] = randPwd($_GET['pwdLength']);
-    header('Location: ./success.php');
-  }
-  
+  session_start();
+  $result = $_SESSION['result'];
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,27 +17,13 @@
     <h1>Password Generator</h1>
   </header>
   <main>
-    <div class="container my-5">
-      <form action="index.php" method="GET">
-        <div class="row justify-content-center">
-          <div class="form-floating col-7 m-3">
-            <input type="number" class="form-control" name="pwdLength" id="floatingInput" min="8" max="16" step="1" placeholder="Insert a number between 8 and 16 to generate a related length password">
-            <label for="floatingInput">Insert a number between 8 and 16 to generate a related length password</label>
-          </div>
-        </div>
-        <div class="row justify-content-center">
-          <div class="col-2 text-center">
-            <button type="submit" class="btn btn-warning">GENERATE</button>
-          </div>
-        </div>
-      </form>
-      <!-- <?php if ($showResult) : ?>
-        <div class="ms-result d-flex align-items-center justify-content-center gap-5 text-success m-3 p-3">
-          <span style="font-size: 3rem"><i class="fa-solid fa-fingerprint"></i></span>
-          <span><?php echo $result ?></span>
-          <span style="font-size: 3rem"><i class="fa-solid fa-fingerprint"></i></span>
-        </div>
-      <?php endif ?> -->
+    <div class="container my-5 text-center">
+      <h3>Your secure generated password is:</h3>
+      <div class="ms-result d-flex align-items-center justify-content-center gap-5 text-success m-3 p-3">
+        <span style="font-size: 3rem"><i class="fa-solid fa-fingerprint"></i></span>
+        <span><?php echo $result ?></span>
+        <span style="font-size: 3rem"><i class="fa-solid fa-fingerprint"></i></span>
+      </div>
     </div>
   </main>
   <footer class="fixed-bottom">
